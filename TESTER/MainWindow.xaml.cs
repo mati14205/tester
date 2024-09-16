@@ -135,23 +135,6 @@ namespace TESTER
                 MessageBox.Show($"Wystąpił problem podczas otwierania pliku: {ex.Message}", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        private void customResizeGrip_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
-        {
-            if (this.WindowState == WindowState.Normal)
-            {
-                // Ustaw współczynnik skalowania dla szerokości i wysokości
-                double newWidth = this.ActualWidth + (e.HorizontalChange);
-                double newHeight = this.ActualHeight + (e.VerticalChange);
-
-                // Ogranicz nowy rozmiar okna do maksymalnego rozmiaru ekranu
-                double maxWidth = SystemParameters.WorkArea.Width;
-                double maxHeight = SystemParameters.WorkArea.Height;
-
-                // Sprawdź minimalne i maksymalne wymiary okna przed skalowaniem
-                this.Width = Math.Max(this.MinWidth, Math.Min(newWidth, maxWidth));
-                this.Height = Math.Max(this.MinHeight, Math.Min(newHeight, maxHeight));
-            }
-        }
 
 
         static string ExtractCaseData(string data, int index)
@@ -280,28 +263,6 @@ namespace TESTER
             }
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-
-            if (ConfigHelper.ReadSetting("WarnOnExit") == "True")
-            {
-                var result = MessageBox.Show("Zamknięcie okna spowoduje utratę wprowadzonych danych", "Uwaga", MessageBoxButton.OKCancel, MessageBoxImage.None);
-
-                if (result == MessageBoxResult.OK)
-                {
-                    // Logika zapisywania zmian
-                    this.Close(); // Zamknij okno tylko jeśli użytkownik zdecydował się zapisać zmiany
-                }
-                else if (result == MessageBoxResult.Cancel)
-                {
-                    return;
-                }
-                this.Close();
-            }
-            this.Close();
-
-        }
-
         private void CopyToClipboardButton_Click(object sender, RoutedEventArgs e)
         {
             Clipboard.SetText(output.Text);
@@ -416,26 +377,6 @@ namespace TESTER
         {
             // Wywołanie zdarzenia address_TextChanged
             address_TextChanged(sender, null);
-        }
-
-        private void MaximizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.WindowState == WindowState.Maximized)
-            {
-                // Przywracanie okna do normalnego rozmiaru
-                this.WindowState = WindowState.Normal;
-            }
-            else
-            {
-                // Maksymalizacja okna
-                this.WindowState = WindowState.Maximized;
-            }
-        }
-
-
-        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
         }
     }
 }

@@ -8,9 +8,9 @@
     Height="400"
     MinWidth="475 "
     MinHeight="375"
-    AllowsTransparency="True"
+    AllowsTransparency="False"
     ResizeMode="CanResizeWithGrip"
-    WindowStyle="None">
+    WindowStyle="SingleBorderWindow">
 
     <Window.Resources>
         <!--  Control colors.  -->
@@ -409,11 +409,11 @@
                 Height="20"
                 Background="#122036">
                 <DockPanel>
-                    <Image
+                    <!-- <Image
                         Width="30"
                         Height="22"
                         HorizontalAlignment="Stretch"
-                        Source="pack://application:,,,/TESTER;component/resources/icon.ico"/>
+                        Source="pack://application:,,,/TESTER;component/resources/icon.ico"/> -->
                     <!--  Przycisk "menu"  -->
                     <Button
                         x:Name="menu"
@@ -425,7 +425,8 @@
                         Content="Menu"
                         FontSize="12"
                         Foreground="White"
-                        PreviewMouseLeftButtonDown="Menu_PreviewMouseLeftButtonDown">
+                        PreviewMouseLeftButtonDown="Menu_PreviewMouseLeftButtonDown"
+                        Margin="3, 0, 0, 0">
 
                         <Button.ContextMenu>
                             <ContextMenu x:Name="buttonContextMenu">
@@ -436,48 +437,6 @@
                             <ToolTip/>
                         </Button.ToolTip>
                     </Button>
-                    <Grid HorizontalAlignment="Right"
-                          DockPanel.Dock="Right">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width=" 24"/>
-                            <ColumnDefinition Width=" 24"/>
-                            <ColumnDefinition Width=" 24"/>
-                        </Grid.ColumnDefinitions>
-                        <Button
-                            Grid.Column="0"
-                            Width="26"
-                            Height="32"
-                            Margin="0,-12,0,0"
-                            Background="Transparent"
-                            BorderThickness="0"
-                            Click="MinimizeButton_Click"
-                            Content="_"
-                            FontSize="20"
-                            FontWeight="UltraBold"
-                            Foreground="Red"/>
-                        <Button
-                            Grid.Column="1"
-                            Width="26"
-                            Height="32"
-                            Margin="0,-9,0,0"
-                            Background="Transparent"
-                            BorderThickness="0"
-                            Click="MaximizeButton_Click"
-                            Content="□"
-                            FontSize="20"
-                            Foreground="Red"/>
-                        <Button
-                            Grid.Column="2"
-                            Width="26"
-                            Height="32"
-                            Margin="0,-9,0,0"
-                            Background="Transparent"
-                            BorderThickness="0"
-                            Click="CloseButton_Click"
-                            Content="x"
-                            FontSize="20"
-                            Foreground="Red"/>
-                    </Grid>
                 </DockPanel>
             </Grid>
         </Grid>
@@ -487,28 +446,11 @@
 
                 <TextBlock
                     x:Name="Credits"
-                    Margin="6,1,1,1"
+                    Margin="6,1,1,6"
                     DockPanel.Dock="Left"
                     FontSize="9"
                     Opacity="0.5"
                     TextWrapping="Wrap"/>
-
-                <Thumb
-                    x:Name="customResizeGrip"
-                    Width="16"
-                    Height="16"
-                    Margin="1,1,3,3"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    DragDelta="customResizeGrip_DragDelta">
-                    <Thumb.Template>
-                        <ControlTemplate TargetType="Thumb">
-                            <Border Background="Transparent">
-                                <Image Source="pack://application:,,,/TESTER;component/resources/corner.png"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Thumb.Template>
-                </Thumb>
             </DockPanel>
         </Grid>
 
@@ -525,7 +467,9 @@
             <!--  Lewa strona  -->
             <DockPanel Grid.Column="0"
                        Margin="3,3,0,3">
-                <Grid>
+                <ScrollViewer
+                    VerticalScrollBarVisibility="Hidden">
+                    <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -822,6 +766,7 @@
                             <!--  TextBox "desc"  -->
                             <TextBox
                                 x:Name="desc"
+                                MinHeight="24"
                                 Grid.Row="3"
                                 Margin="1,1,1,1"
                                 VerticalAlignment="Stretch"
@@ -834,6 +779,8 @@
                         </Grid>
                     </DockPanel>
                 </Grid>
+                </ScrollViewer>
+                
 
             </DockPanel>
 
