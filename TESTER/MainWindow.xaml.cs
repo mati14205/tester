@@ -57,7 +57,7 @@ namespace TESTER
 
 
 
-            Credits.Text = this.Title.ToString() + " By: Szymon Bogus";
+            Credits.Text ="By: Szymon Bogus";
 
 
             AddMenuItem("Zapisz", MenuSave_Click);
